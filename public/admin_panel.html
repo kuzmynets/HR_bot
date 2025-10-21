@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Адмін-панель HR</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="p-4">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">HR Expert System</a>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" id="vacancies-tab" href="#">Вакансії</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="questions-tab" href="#">Питання</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="candidates-tab" href="#">Кандидати</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div id="vacancies-section">
+    <h3>Вакансії</h3>
+    <div class="card p-3 mb-4 shadow-sm">
+        <h5>Додати нову вакансію</h5>
+        <label class="form-label">Назва вакансії</label>
+        <input class="form-control mb-2" id="job_title">
+        <label class="form-label">Мінімальний досвід</label>
+        <input class="form-control mb-2" id="job_experience" type="number">
+        <label class="form-label">Освіта</label>
+        <input class="form-control mb-2" id="job_education">
+        <label class="form-label">Навички (через кому)</label>
+        <input class="form-control mb-2" id="job_skills">
+        <label class="form-label">Опис вакансії</label>
+        <textarea class="form-control mb-2" id="job_description"></textarea>
+        <button class="btn btn-primary" onclick="addJob()">Додати вакансію</button>
+    </div>
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+        <tr>
+            <th>Назва</th>
+            <th>Досвід</th>
+            <th>Освіта</th>
+            <th>Навички</th>
+            <th>Опис</th>
+            <th>Дії</th>
+        </tr>
+        </thead>
+        <tbody id="rulesTable"></tbody>
+    </table>
+</div>
+
+<div id="questions-section" style="display:none;">
+    <h3>Питання</h3>
+    <div class="card p-3 mb-4 shadow-sm">
+        <h5>Додати нове питання</h5>
+        <label class="form-label">Текст питання</label>
+        <input class="form-control mb-2" id="q_text">
+        <label class="form-label">Варіанти (через кому)</label>
+        <input class="form-control mb-2" id="q_options">
+        <label class="form-label">Правильна відповідь</label>
+        <input class="form-control mb-2" id="q_correct">
+        <button class="btn btn-primary" onclick="addQuestion()">Додати питання</button>
+    </div>
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+        <tr>
+            <th>Питання</th>
+            <th>Варіанти</th>
+            <th>Правильна відповідь</th>
+            <th>Дії</th>
+        </tr>
+        </thead>
+        <tbody id="questionsTable"></tbody>
+    </table>
+</div>
+
+<div id="candidates-section" style="display:none;">
+    <h3>Кандидати</h3>
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+        <tr>
+            <th>Ім’я</th>
+            <th>Освіта</th>
+            <th>Досвід</th>
+            <th>Навички</th>
+            <th>Підібрані вакансії</th>
+            <th>Дії</th>
+        </tr>
+        </thead>
+        <tbody id="candidatesTable"></tbody>
+    </table>
+</div>
+
+<script>
+    // ======= Переключення вкладок =======
+    const vacanciesTab = document.getElementById("vacancies-tab");
+    const questionsTab = document.getElementById("questions-tab");
+    const candidatesTab = document.getElementById("candidates-tab");
+
+    const vacanciesSec = document.getElementById("vacancies-section");
+    const questionsSec = document.getElementById("questions-section");
+    const candidatesSec = document.getElementById("candidates-section");
+
+    vacanciesTab.onclick = () => {
+        vacanciesSec.style.display = "block";
+        questionsSec.style.display = "none";
+        candidatesSec.style.display = "none";
+        vacanciesTab.classList.add("active");
+        questionsTab.classList.remove("active");
+        candidatesTab.classList.remove("active");
+    };
+    questionsTab.onclick = () => {
+        vacanciesSec.style.display = "none";
+        questionsSec.style.display = "block";
+        candidatesSec.style.display = "none";
+        vacanciesTab.classList.remove("active");
+        questionsTab.classList.add("active");
+        candidatesTab.classList.remove("active");
+    };
+    candidatesTab.onclick = () => {
+        vacanciesSec.style.display = "none";
+        questionsSec.style.display = "none";
+        candidatesSec.style.display = "block";
+        vacanciesTab.classList.remove("active");
+        questionsTab.classList.remove("active");
+        candidatesTab.classList.add("active");
+        fetchCandidates();
+    };
+
+    // ======= Вакансії =======
+    async function fetchJobs() {
+        const res = await fetch("/rules");
+        const jobs = await res.json();
+        const tbody = document.getElementById("rulesTable");
+        tbody.innerHTML = "";
+        jobs.forEach(j => {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${j.title}</td>
+                <td>${j.minExperience || 0}</td>
+                <td>${j.education || ""}</td>
+                <td>${j.skills ? j.skills.join(", ") : ""}</td>
+                <td>${j.description || ""}</td>
+                <td>
+                    <button class="btn btn-sm btn-warning me-1" onclick="editJob('${j._id}')">✏️</button>
+                    <button class="btn btn-sm btn-danger" onclick="deleteJob('${j._id}')">🗑️</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    async function addJob() {
+        const newJob = {
+            title: document.getElementById("job_title").value,
+            minExperience: parseInt(document.getElementById("job_experience").value),
+            education: document.getElementById("job_education").value,
+            skills: document.getElementById("job_skills").value.split(",").map(s => s.trim()),
+            description: document.getElementById("job_description").value
+        };
+        await fetch("/rules", { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(newJob)});
+        fetchJobs();
+    }
+
+    async function deleteJob(id) {
+        await fetch("/rules/"+id, {method:"DELETE"});
+        fetchJobs();
+    }
+
+    async function editJob(id) {
+        const title = prompt("Назва вакансії:");
+        const exp = prompt("Мінімальний досвід:");
+        const edu = prompt("Освіта:");
+        const skills = prompt("Навички (через кому):");
+        const desc = prompt("Опис вакансії:");
+        await fetch("/rules/"+id, {
+            method:"PUT",
+            headers:{"Content-Type":"application/json"},
+            body: JSON.stringify({
+                title, minExperience:parseInt(exp), education:edu,
+                skills:skills.split(",").map(s=>s.trim()), description:desc
+            })
+        });
+        fetchJobs();
+    }
+
+    fetchJobs();
+
+    // ======= Питання =======
+    async function fetchQuestions() {
+        const res = await fetch("/questions");
+        const questions = await res.json();
+        const tbody = document.getElementById("questionsTable");
+        tbody.innerHTML = "";
+        questions.forEach(q=>{
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${q.text}</td>
+                <td>${q.options.join(", ")}</td>
+                <td>${q.correctAnswer}</td>
+                <td>
+                    <button class="btn btn-sm btn-warning me-1" onclick="editQuestion('${q._id}')">✏️</button>
+                    <button class="btn btn-sm btn-danger" onclick="deleteQuestion('${q._id}')">🗑️</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    async function addQuestion() {
+        const q = {
+            text: document.getElementById("q_text").value,
+            options: document.getElementById("q_options").value.split(",").map(s=>s.trim()),
+            correctAnswer: document.getElementById("q_correct").value
+        };
+        await fetch("/questions",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(q)});
+        fetchQuestions();
+    }
+
+    async function deleteQuestion(id) {
+        await fetch("/questions/"+id,{method:"DELETE"});
+        fetchQuestions();
+    }
+
+    async function editQuestion(id){
+        const text = prompt("Текст питання:");
+        const opts = prompt("Варіанти (через кому):");
+        const correct = prompt("Правильна відповідь:");
+        await fetch("/questions/"+id,{method:"PUT",headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({text, options:opts.split(",").map(s=>s.trim()), correctAnswer:correct})});
+        fetchQuestions();
+    }
+
+    fetchQuestions();
+
+    // ======= Кандидати =======
+    async function fetchCandidates(){
+        const res = await fetch("/candidates");
+        const candidates = await res.json();
+        const tbody = document.getElementById("candidatesTable");
+        tbody.innerHTML = "";
+        candidates.forEach(c=>{
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${c.name}</td>
+                <td>${c.education}</td>
+                <td>${c.experience}</td>
+                <td>${c.skills.join(", ")}</td>
+                <td>${c.matchedJobs && c.matchedJobs.length ? c.matchedJobs.join(", ") : "-"}</td>
+                <td><button class="btn btn-sm btn-danger" onclick="deleteCandidate('${c._id}')">🗑️</button></td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    async function deleteCandidate(id){
+        await fetch("/candidates/"+id,{method:"DELETE"});
+        fetchCandidates();
+    }
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
