@@ -1,0 +1,23 @@
+{
+  "id": "user/messages",
+  "title": "Приклади повідомлень",
+  "description": "Вітаю! Введіть своє ім’я.",
+  "source": "@site/docs/user/messages.md",
+  "sourceDirName": "user",
+  "slug": "/user/messages",
+  "permalink": "/user/messages",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Інтерфейс користувача",
+    "permalink": "/user/interface"
+  },
+  "next": {
+    "title": "Панель адміністратора",
+    "permalink": "/admin/panel"
+  }
+}

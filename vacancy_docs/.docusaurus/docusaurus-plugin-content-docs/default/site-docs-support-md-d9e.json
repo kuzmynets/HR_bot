@@ -1,0 +1,19 @@
+{
+  "id": "support",
+  "title": "Зворотний зв’язок",
+  "description": "У разі питань звертайтесь:",
+  "source": "@site/docs/support.md",
+  "sourceDirName": ".",
+  "slug": "/support",
+  "permalink": "/support",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Керування базою",
+    "permalink": "/admin/management"
+  }
+}

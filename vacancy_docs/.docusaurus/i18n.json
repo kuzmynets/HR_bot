@@ -1,0 +1,20 @@
+{
+  "defaultLocale": "uk",
+  "locales": [
+    "uk"
+  ],
+  "path": "i18n",
+  "currentLocale": "uk",
+  "localeConfigs": {
+    "uk": {
+      "label": "Українська",
+      "direction": "ltr",
+      "htmlLang": "uk",
+      "calendar": "gregory",
+      "path": "uk",
+      "translate": false,
+      "url": "https://your-site.com",
+      "baseUrl": "/"
+    }
+  }
+}

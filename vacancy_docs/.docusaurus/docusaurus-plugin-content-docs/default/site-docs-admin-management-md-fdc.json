@@ -1,0 +1,23 @@
+{
+  "id": "admin/management",
+  "title": "Керування базою",
+  "description": "Усі вакансії зберігаються в MongoDB:",
+  "source": "@site/docs/admin/management.md",
+  "sourceDirName": "admin",
+  "slug": "/admin/management",
+  "permalink": "/admin/management",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Панель адміністратора",
+    "permalink": "/admin/panel"
+  },
+  "next": {
+    "title": "Зворотний зв’язок",
+    "permalink": "/support"
+  }
+}

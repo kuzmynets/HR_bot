@@ -1,0 +1,23 @@
+{
+  "id": "system/overview",
+  "title": "Про систему",
+  "description": "Експертна система “Підбір вакансій” допомагає користувачам знаходити найвідповідніші вакансії, базуючись на їх освіті, досвіді роботи та навичках.",
+  "source": "@site/docs/system/overview.md",
+  "sourceDirName": "system",
+  "slug": "/system/overview",
+  "permalink": "/system/overview",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Вступ",
+    "permalink": "/"
+  },
+  "next": {
+    "title": "Компоненти системи",
+    "permalink": "/system/components"
+  }
+}

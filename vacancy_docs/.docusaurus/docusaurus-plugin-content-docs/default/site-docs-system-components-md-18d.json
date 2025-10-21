@@ -1,0 +1,23 @@
+{
+  "id": "system/components",
+  "title": "Компоненти системи",
+  "description": "1. База знань",
+  "source": "@site/docs/system/components.md",
+  "sourceDirName": "system",
+  "slug": "/system/components",
+  "permalink": "/system/components",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Про систему",
+    "permalink": "/system/overview"
+  },
+  "next": {
+    "title": "Логіка роботи",
+    "permalink": "/system/logic"
+  }
+}
