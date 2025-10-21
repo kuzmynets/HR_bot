@@ -1,0 +1,23 @@
+{
+  "id": "admin/panel",
+  "title": "Панель адміністратора",
+  "description": "Доступ до /admin_panel.html",
+  "source": "@site/docs/admin/panel.md",
+  "sourceDirName": "admin",
+  "slug": "/admin/panel",
+  "permalink": "/admin/panel",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Приклади повідомлень",
+    "permalink": "/user/messages"
+  },
+  "next": {
+    "title": "Керування базою",
+    "permalink": "/admin/management"
+  }
+}

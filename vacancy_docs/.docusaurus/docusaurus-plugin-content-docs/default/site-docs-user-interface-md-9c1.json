@@ -1,0 +1,23 @@
+{
+  "id": "user/interface",
+  "title": "Інтерфейс користувача",
+  "description": "- Простий діалог у Telegram.",
+  "source": "@site/docs/user/interface.md",
+  "sourceDirName": "user",
+  "slug": "/user/interface",
+  "permalink": "/user/interface",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Як користуватись",
+    "permalink": "/user/usage"
+  },
+  "next": {
+    "title": "Приклади повідомлень",
+    "permalink": "/user/messages"
+  }
+}

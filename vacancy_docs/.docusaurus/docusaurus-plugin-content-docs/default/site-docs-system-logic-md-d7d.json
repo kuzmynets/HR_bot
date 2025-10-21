@@ -1,0 +1,23 @@
+{
+  "id": "system/logic",
+  "title": "Логіка роботи",
+  "description": "1. Користувач вводить свої дані (освіта, досвід, навички).",
+  "source": "@site/docs/system/logic.md",
+  "sourceDirName": "system",
+  "slug": "/system/logic",
+  "permalink": "/system/logic",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Компоненти системи",
+    "permalink": "/system/components"
+  },
+  "next": {
+    "title": "Алгоритм роботи системи",
+    "permalink": "/system/algorithm"
+  }
+}

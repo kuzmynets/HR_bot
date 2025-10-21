@@ -1,0 +1,23 @@
+{
+  "id": "system/algorithm",
+  "title": "Алгоритм роботи системи",
+  "description": "1. Ініціалізація бази вакансій.",
+  "source": "@site/docs/system/algorithm.md",
+  "sourceDirName": "system",
+  "slug": "/system/algorithm",
+  "permalink": "/system/algorithm",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Логіка роботи",
+    "permalink": "/system/logic"
+  },
+  "next": {
+    "title": "Як користуватись",
+    "permalink": "/user/usage"
+  }
+}

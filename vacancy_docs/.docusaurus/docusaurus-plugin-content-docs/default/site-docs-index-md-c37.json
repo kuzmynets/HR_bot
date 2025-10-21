@@ -1,0 +1,18 @@
+{
+  "id": "intro",
+  "title": "Вступ",
+  "description": "Ця документація описує систему підбору вакансій. Вона містить інформацію для користувачів та адміністраторів.",
+  "source": "@site/docs/index.md",
+  "sourceDirName": ".",
+  "slug": "/",
+  "permalink": "/",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {
+    "id": "intro",
+    "title": "Вступ"
+  },
+  "sidebar": "docs"
+}

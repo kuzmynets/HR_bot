@@ -1,0 +1,23 @@
+{
+  "id": "user/usage",
+  "title": "Як користуватись",
+  "description": "1. Знайдіть Telegram-бота “Підбір вакансій”.",
+  "source": "@site/docs/user/usage.md",
+  "sourceDirName": "user",
+  "slug": "/user/usage",
+  "permalink": "/user/usage",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Алгоритм роботи системи",
+    "permalink": "/system/algorithm"
+  },
+  "next": {
+    "title": "Інтерфейс користувача",
+    "permalink": "/user/interface"
+  }
+}
